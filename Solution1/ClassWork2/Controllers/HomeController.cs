@@ -1,6 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.IO;
 using System.Web;
 using System.Web.Mvc;
 
@@ -27,15 +26,26 @@ namespace ClassWork2.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ActionResult Upload()
+        {
+            return View("Upload");
+        }
+
         [HttpPost]
         public ActionResult Upload(HttpPostedFileBase upload)
         {
             if (upload != null)
             {
-                string fileName = System.IO.Path.GetFileName(upload.FileName);
-                upload.SaveAs(Server.MapPath("~/Files/" + fileName));
+                string path = AppDomain.CurrentDomain.BaseDirectory + "Files/";
+                string fileName = Path.GetFileName(upload.FileName);
+                upload.SaveAs(Path.Combine(path, fileName));
+                return Content($"Done!");
             }
-            return Content($"Upload done! {upload.FileName}");
+            else
+            {
+                return Content($"Nothing!");
+            }
         }
     }
 }
