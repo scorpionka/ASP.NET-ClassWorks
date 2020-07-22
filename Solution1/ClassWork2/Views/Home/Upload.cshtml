@@ -4,10 +4,14 @@
 }
 
 <h2>Upload</h2>
+<br />
 
 @using (Html.BeginForm("Upload", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <input type="file" name="upload" />
     <br />
+    <br />
+    <h3>Rename file</h3>
+    <input type="text" name="newName"/><p>Choose new filename</p>
     <input type="submit" value="Upload" />
 }

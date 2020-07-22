@@ -33,13 +33,14 @@ namespace ClassWork2.Controllers
         }
 
         [HttpPost]
-        public ActionResult Upload(HttpPostedFileBase upload)
+        public ActionResult Upload(HttpPostedFileBase upload, string newName)
         {
             if (upload != null)
             {
                 string path = AppDomain.CurrentDomain.BaseDirectory + "Files/";
                 string fileName = Path.GetFileName(upload.FileName);
-                upload.SaveAs(Path.Combine(path, fileName));
+                string extension = Path.GetExtension(fileName);
+                upload.SaveAs(Path.Combine(path, newName + extension));
                 return Content($"Done!");
             }
             else
