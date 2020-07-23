@@ -1,9 +1,11 @@
-﻿using System;
+﻿using ClassWork2.Models;
+using System;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 
 namespace ClassWork2.Controllers
 {
@@ -89,6 +91,13 @@ namespace ClassWork2.Controllers
                     break;
             }
             return Content($"{operation} = {Math.Round(result, 1)}");
+        }
+
+        [HttpGet]
+        public ContentResult GetPerson(Person person)
+        {
+            var json = new JavaScriptSerializer().Serialize(person);
+            return Content(json);
         }
     }
 }
