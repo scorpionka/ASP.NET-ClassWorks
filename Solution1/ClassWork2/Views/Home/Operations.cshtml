@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "Operations";
+}
+
+<h2>Operations</h2>
+
+@using (Html.BeginForm("Operations", "Home", FormMethod.Post))
+{
+    <p>
+        Numbers (separated by commas, for example: 1, 2, 3): <input type="text" name="numbers" />
+    </p>
+    <p>
+        Operation (Average, Min or Max): <input type="text" name="operation" />
+    </p>
+    <input type="submit" value="Send" />
+}
+

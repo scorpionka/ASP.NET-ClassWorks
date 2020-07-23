@@ -1,5 +1,7 @@
 ﻿using System;
+using System.ComponentModel;
 using System.IO;
+using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
@@ -27,7 +29,7 @@ namespace ClassWork2.Controllers
         }
 
         [HttpGet]
-        public ActionResult Upload()
+        public ViewResult Upload()
         {
             return View("Upload");
         }
@@ -47,6 +49,46 @@ namespace ClassWork2.Controllers
             {
                 return Content($"Nothing!");
             }
+        }
+
+        public enum Operation
+        {
+            [Description("Average")]
+            Average,
+            [Description("Min")]
+            Min,
+            [Description("Max")]
+            Max
+        }
+
+        [HttpGet]
+        public ViewResult Operations()
+        {
+            return View("Operations");
+        }
+
+        [HttpPost]
+        public ContentResult Operations(string numbers, Operation operation)
+        {
+            int[] arrayNumbers = numbers.Split(',').Select(x => Convert.ToInt32(x)).ToArray();
+            double result = 0;
+            switch (operation)
+            {
+                case Operation.Average:
+                    foreach (var n in arrayNumbers)
+                    {
+                        result = result + n;
+                    }
+                    result = result / arrayNumbers.Length;
+                    break;
+                case Operation.Min:
+                    result = arrayNumbers.Min();
+                    break;
+                case Operation.Max:
+                    result = arrayNumbers.Max();
+                    break;
+            }
+            return Content($"{operation} = {Math.Round(result, 1)}");
         }
     }
 }
