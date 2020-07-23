@@ -1,5 +1,4 @@
 ﻿using ClassWork2.Models;
-using Newtonsoft.Json;
 using System;
 using System.ComponentModel;
 using System.IO;
@@ -99,12 +98,12 @@ namespace ClassWork2.Controllers
         {
             PersonFormatted personFormatted = new PersonFormatted();
             personFormatted.Id = person.Id;
-            personFormatted.Name = $"{person.FirstName} {person.LastName} {person.Patronymic} {person.sex} children: {person.Children.Count()}";
+            personFormatted.Name = $"{person.FirstName} {person.Patronymic} {person.LastName}. Sex: {person.sex}. He(She) has children: {person.Children.Count()}";
             if (person.Children.Count() > 0)
             {
                 foreach (var x in person.Children)
                 {
-                    personFormatted.Children = personFormatted.Children + $"{x.FirstName} {x.LastName} {x.Patronymic} {x.sex} \n";
+                    personFormatted.Children = personFormatted.Children + $"{x.FirstName} {x.Patronymic} {x.LastName}. Sex: {x.sex} - ";
                 }
             }
             string jsonString;
@@ -112,9 +111,8 @@ namespace ClassWork2.Controllers
             {
                 WriteIndented = true,
             };
-            jsonString = System.Text.Json.JsonSerializer.Serialize(personFormatted, options);
+            jsonString = JsonSerializer.Serialize(personFormatted, options);
             return Content(jsonString);
-        //http://localhost:54531/Home/GetPerson?FirstName=Alex&LastName=Smirnov&Patronymic=Vladimirovich&Sex=male&Children[0].FirstName=Uliana
         }
     }
 }
