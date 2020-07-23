@@ -1,11 +1,12 @@
 ﻿using ClassWork2.Models;
+using Newtonsoft.Json;
 using System;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Text.Json;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.Script.Serialization;
 
 namespace ClassWork2.Controllers
 {
@@ -96,8 +97,24 @@ namespace ClassWork2.Controllers
         [HttpGet]
         public ContentResult GetPerson(Person person)
         {
-            var json = new JavaScriptSerializer().Serialize(person);
-            return Content(json);
+            PersonFormatted personFormatted = new PersonFormatted();
+            personFormatted.Id = person.Id;
+            personFormatted.Name = $"{person.FirstName} {person.LastName} {person.Patronymic} {person.sex} children: {person.Children.Count()}";
+            if (person.Children.Count() > 0)
+            {
+                foreach (var x in person.Children)
+                {
+                    personFormatted.Children = personFormatted.Children + $"{x.FirstName} {x.LastName} {x.Patronymic} {x.sex} \n";
+                }
+            }
+            string jsonString;
+            var options = new JsonSerializerOptions
+            {
+                WriteIndented = true,
+            };
+            jsonString = System.Text.Json.JsonSerializer.Serialize(personFormatted, options);
+            return Content(jsonString);
+        //http://localhost:54531/Home/GetPerson?FirstName=Alex&LastName=Smirnov&Patronymic=Vladimirovich&Sex=male&Children[0].FirstName=Uliana
         }
     }
 }

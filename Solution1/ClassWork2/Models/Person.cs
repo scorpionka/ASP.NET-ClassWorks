@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
 namespace ClassWork2.Models
 {
@@ -11,10 +7,10 @@ namespace ClassWork2.Models
     {
         public enum Sex
         {
-            [Display(Name = "male")]
-            Male,
-            [Display(Name = "female")]
-            Female
+            [Description("male")]
+            male,
+            [Description("female")]
+            female
         }
         public int Id { get; set; }
         public string FirstName { get; set; }
