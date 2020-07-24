@@ -94,7 +94,13 @@ namespace ClassWork2.Controllers
         }
 
         [HttpGet]
-        public ContentResult GetPerson(Person person)
+        public ViewResult Person()
+        {
+            return View("Person");
+        }
+
+        [HttpPost]
+        public ContentResult Person(Person person)
         {
             PersonFormatted personFormatted = new PersonFormatted();
             personFormatted.Id = person.Id;
