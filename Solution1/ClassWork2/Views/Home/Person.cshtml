@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "Person";
+}
+
+<h2>Person</h2>
+
+@using (Html.BeginForm("Person", "Home", FormMethod.Post))
+{
+    <p>
+        FirstName: <input type="text" name="FirstName" />
+    </p>
+    <p>
+        LastName: <input type="text" name="LastName" />
+    </p>
+    <p>
+        Patronymic: <input type="text" name="Patronymic" />
+    </p>
+    <p>
+        Sex: <input type="text" name="sex" />
+    </p>
+    <p>
+        Child 1: FirstName: <input type="text" name="Children[0].FirstName" />
+    </p>
+    <p>
+        Child 1: LastName: <input type="text" name="Children[0].LastName" />
+    </p>
+    <p>
+        Child 1: Patronymic: <input type="text" name="Children[0].Patronymic" />
+    </p>
+    <p>
+        Child 1: Sex: <input type="text" name="Children[0].sex" />
+    </p>
+    <p>
+        Child 2: FirstName: <input type="text" name="Children[1].FirstName" />
+    </p>
+    <p>
+        Child 2: LastName: <input type="text" name="Children[1].LastName" />
+    </p>
+    <p>
+        Child 2: Patronymic: <input type="text" name="Children[1].Patronymic" />
+    </p>
+    <p>
+        Child 2: Sex: <input type="text" name="Children[1].sex" />
+    </p>
+    <input type="submit" value="Send" />
+}
