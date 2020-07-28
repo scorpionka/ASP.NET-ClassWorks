@@ -1,4 +1,4 @@
-﻿@model ClassWork3.Models.Staff
+﻿@model List<ClassWork3.Models.Staff>
 
 @{
     ViewBag.Title = "Staff";
@@ -6,17 +6,11 @@
 
 <h2>Staff</h2>
 
+@foreach (var x in Model)
+{
 <p>
-    @Model.FirstName
+    @x.FirstName @x.LastName @x.Patronymic @x.BirthDay.ToString("dd.MM.yyyy") @x.ContactNumber
 </p>
-<p>
-    @Model.LastName
-</p>
-<p>
-    @Model.Patronymic
-</p>
-<p>
-    @Model.BirthDay
-</p>
+}
 
 
