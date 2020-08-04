@@ -1,0 +1,19 @@
+﻿@model DateTime
+
+<b>@Model</b>
+
+@model ClassWork5.Models.DateTimeView
+
+@{
+    ViewBag.Title = "Display";
+}
+
+<h2>Display</h2>
+
+<div>
+    <div>
+        <p>
+            Id: @Html.DisplayFor(model => model.dateTime)
+        </p>
+    </div>
+</div>
