@@ -9,18 +9,18 @@ namespace ClassWork7.Infrastructure.Filters
 {
     public class CustomActionFilter : FilterAttribute, IActionFilter
     {
-        private Stopwatch myStopwatch;
-        public Stopwatch MyStopwatch { get; set; }
+        private DateTime start;
+        private DateTime stop;
 
         public void OnActionExecuted(ActionExecutedContext filterContext)
         {
-            myStopwatch.Stop();
-            Debug.WriteLine($"{myStopwatch}");
+            stop = DateTime.Now;
+            Debug.WriteLine($"Time of action: {stop-start}");
         }
 
         public void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            myStopwatch.Start();
+            start = DateTime.Now;
         }
     }
 }
