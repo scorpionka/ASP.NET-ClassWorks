@@ -8,9 +8,9 @@ namespace ClassWork7.Controllers
 {
     public class FilterController : Controller
     {
-        public ActionResult Sum(int a, int b)
+        public ActionResult Index()
         {
-            return Json(new Sum { Value = a + b });
+            return View();
         }
     }
 }
