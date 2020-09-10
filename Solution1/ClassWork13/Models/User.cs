@@ -16,6 +16,7 @@ namespace ClassWork13.Models
         [Required(ErrorMessage = "Field: Date of birth is required")]
         [Range(typeof(DateTime), "1/1/1900", Pars]
         public DateTime DateOfBirth { get; set; }
+        [DataType()]
         public string Comments { get; set; }
         public string Email { get; set; }
     }
