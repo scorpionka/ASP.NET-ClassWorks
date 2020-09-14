@@ -10,6 +10,8 @@ namespace ClassWork16.Controllers
     [RoutePrefix("api/static/languages")]
     public class LanguagesController : ApiController
     {
+        [Route]
+        [HttpGet]
         // GET api/values
         public IEnumerable<string> Get()
         {
