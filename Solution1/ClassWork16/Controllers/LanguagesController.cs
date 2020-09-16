@@ -1,8 +1,5 @@
-﻿using System;
+﻿using ClassWork16.Models;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 
 namespace ClassWork16.Controllers
@@ -12,9 +9,11 @@ namespace ClassWork16.Controllers
     {
         [Route]
         [HttpGet]
-        // GET api/values
-        public IEnumerable<string> Get()
+        // GET api/static/languages
+        public IEnumerable<string> Get(List<Language> languages)
         {
+            string[] languages = new string[]();
+
             return new string[] { "value1", "value2" };
         }
 
